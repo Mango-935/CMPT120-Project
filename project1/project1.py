@@ -10,3 +10,6 @@ def main():
     "{1}.".format("INSERT NAME HERE", "Mall"))
     curLoc = "Mall"
     curPoints = 0
+
+
+main()

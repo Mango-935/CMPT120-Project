@@ -12,13 +12,13 @@ def main():
     curLoc = 0
     curPoints = 0
     loc1 = "You find yourself in a dimly lit mall. The walls are bare, "
-    "revealing cracked bricks and sheetrock."
-    loc2 = "You find yourself in a trench. Dirt, grime, and rocks tumble into "
-    "the center path as you stand there."
+    loc1 += "revealing cracked bricks and sheetrock."
+    loc2 = "You find yourself in a trench. Dirt, grime, and rocks tumble "
+    loc2 += "into the center path as you stand there."
     loc3 = "You find yourself in an air balloon. The fabric seems strained, "
-    "as if it could rip any moment."
+    loc3 += "as if it could rip any moment."
     loc4 = "You find yourself in a pitch black room. There is a single green "
-    "and red light in the center, dangling from the city."
+    loc4 += "and red light in the center, dangling from the ceiling."
     for i in range(4):
         if (curLoc == 0):
             print(loc1)
@@ -33,12 +33,13 @@ def main():
         curPoints += 5
         curLoc += 1
     print("You walk over and pull both lights at the same time, because you "
-          "can and no one's stopping you. The green light goes dark as a door"
-          " begins to open, releasing you from this game. The red light, on"
-          " the other hand, glows brighter, and brighter. Eventually, it"
-          " explodes... into confetti! You Win!\n")
-    print("Game designed and programmed by Jeremy Gargana & Chris Danyluk. A"
-          "ll rights belong to thus and you now owe us $20 for pirating our "
+          "can and no one's stopping you.\n"
+          "The green light goes dark as a door begins to open, releasing you "
+          "from this game.\nThe red light, on the other hand, glows "
+          "brighter, and brighter. Eventually, it explodes... into confetti! "
+          "You Win!\n")
+    print("Game designed and programmed by Jeremy Gargana & Chris Danyluk.\n"
+          "All rights belong to thus and you now owe us $20 for pirating our "
           "life's work :)")
 
 

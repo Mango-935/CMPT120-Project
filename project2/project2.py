@@ -9,19 +9,22 @@ def main():
           "You rub your eyes and blink a few times, only to realize you are "
           "not in your room.\n"
           "As you look around, you notice that you are infact in a Mall.\n")
+    player = input("You have to think hard, but eventually you remember your "
+                   "own name(If you did not remember your name, life would be"
+                   " easier. Trust me on this one): ")
     # Gives user title and background info
     curLoc = 0  # Initializes current location
     curPoints = 0  # Initializes current score
-    loc_mall = "You find yourself in a dimly lit mall. The walls are bare, "
+    loc_mall = player + ", you find yourself in a dimly lit mall. The walls are bare, "
     loc_mall += "revealing cracked bricks and sheetrock."
     loc_trench = "You find yourself in a trench. Dirt, grime, and rocks tumble"
     loc_trench += " into the center path as you stand there."
-    loc_balloon = "You find yourself in an air balloon. The fabric seems "
+    loc_balloon = player + ", you find yourself in an air balloon. The fabric seems "
     loc_balloon += "strained, as if it could rip any moment."
     loc_darkRoom = "You find yourself in a pitch black room. There is a single "
     loc_darkRoom += "green and red light in the center, dangling from the"
     loc_darkRoom += " ceiling."
-    loc_school = "You find yourself in an abandoned classroom of your old "
+    loc_school = player + " you find yourself in an abandoned classroom of your old "
     loc_school += "school. There are old books and backpacks laying"
     loc_school += " about the room."
     loc_helipad = "You find yourself on a helipad in the dead of night."

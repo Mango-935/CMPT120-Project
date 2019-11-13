@@ -24,6 +24,8 @@ def intro():
 def game_loop(player):
     curLoc = 0  # Initializes current location
     curPoints = 0  # Initializes current score
+    time_limit = 10 # sets max command limit
+    move_num = 0 # sets your current move number
     light = False  # Used for hidden ending
     secret = False  # Used for hidden ending
     loc_mall = player + ", you find yourself in a dimly lit mall. The walls "
@@ -57,6 +59,8 @@ def game_loop(player):
             print(loc_darkRoom)
         # Cycles through locations
         while (True):
+            if (move_num >= time_limit):
+                    return (2)
             if (curLoc == 0):
                 action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
@@ -74,12 +78,15 @@ def game_loop(player):
                 elif (action == "map"):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "move south"):  # Progresses to next area
+                    move_num += 1
                     break
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
             elif (curLoc == 1):  # Gives valid commands
-                action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n")
+                action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
                 elif(action == "look over"):
@@ -90,12 +97,15 @@ def game_loop(player):
                 elif (action == "map"):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "follow the trench"):  # Progresses to next area
+                    move_num += 1
                     break
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
             elif (curLoc == 2):  # Gives valid commands
-                action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n")
+                action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
                 elif(action == "watch"):
@@ -109,12 +119,15 @@ def game_loop(player):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "jump"):  # Progresses to next area
                     print("You're insane. Just wanted to mention that.")
+                    move_num += 1
                     break
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
             elif (curLoc == 3):  # Gives valid commands
-                action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n")
+                action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
                 elif(action == "steal lights"):
@@ -127,12 +140,15 @@ def game_loop(player):
                 elif (action == "map"):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "leave through hatch"):
+                    move_num += 1
                     break  # Progresses to next area
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
             elif (curLoc == 4):  # Gives valid commands
-                action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n")
+                action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
                 elif(action == "take bag"):
@@ -149,12 +165,15 @@ def game_loop(player):
                 elif (action == "map"):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "enter next class"):  # Progresses to next area
+                    move_num += 1
                     break
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
             elif (curLoc == 5):  # Gives valid commands
-                action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n")
+                action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
                 elif (action == "points"):
@@ -179,7 +198,9 @@ def game_loop(player):
                 elif(action == "pull both lights" and secret is True):
                     break
                 else:
+                    move_num -= 1
                     print("\nSorry, didn't quite catch that.")
+                move_num += 1
 
         curLoc, curPoints = change(curLoc, curPoints)
         # Changes location and score
@@ -200,6 +221,12 @@ def outro(cont):
               "\nbefore a bloddcurdling scream. You failed.\nEnding: Bad\nIf "
               "only you could have done something like "
               "'Pull Both Lights' ;)\n")  # Gives user bad ending
+    elif (cont == 2):
+        print("Suddenly, your eyes grow dark. Your entire body locks up and "
+              "everything fades away. After a moment, a massive red 'Game "
+              "Over' appears above you with smaller text saying 'Cause of "
+              "death: Time Out'. It would appear you are in some kind of game"
+              " and your too slow to keep yourself alive. Congrats!")
     else:
         print("\nWow. You are actually really bad at games or have decided "
               "that this is not the greatest thing you could be doing today. "

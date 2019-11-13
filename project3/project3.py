@@ -33,10 +33,12 @@ def game_loop(player):
               " into the center path as you stand there.",  # Trench
               player + ", you find yourself in an air balloon. The "
               "fabric seems strained, as if it could rip any moment.",  # Balloon
-              player + ", you find yourself",  # Stadium
+              player + ", you find yourself in a baseball stadium. "
+              "The roar of the crowd deafens you.",  # Stadium
               "You find yourself on a helipad in the dead of night."
               " The wind batters against you, disturbing your focus.",  # Helipad
-              "You find yourself",  # Boat
+              "You find yourself on a boat in the middle of a river. The "
+              "intense waves are almost making the boat capsize. Almost.",  # Boat
               player + " you find yourself in an abandoned classroom of "
               "your old school. There are old books and backpacks laying"
               " about the \nroom.",  # School

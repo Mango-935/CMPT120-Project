@@ -39,10 +39,11 @@ def game_loop(player):
               "You find yourself",  # Boat
               player + " you find yourself in an abandoned classroom of "
               "your old school. There are old books and backpacks laying"
-              " about the \nroom.",
+              " about the \nroom.",  # School
               "You find yourself in a pitch black room. There is a "
               "single green light and an empty container in the center, "
-              "dangling \nfrom the ceiling."]
+              "dangling \nfrom the ceiling."]  # DarkRoom
+    curLocBool = [False, False, False, False, False, False, False, False]
     # Descriptions of each location given to the user.
 
     for i in range(len(curLoc)):
@@ -69,6 +70,7 @@ def game_loop(player):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "move south"):  # Progresses to next area
                     move_num += 1
+                    curLocBool[i] = True
                     break
                 else:
                     move_num -= 1
@@ -88,6 +90,7 @@ def game_loop(player):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "follow the trench"):  # Progresses to next area
                     move_num += 1
+                    curLocBool[i] = True
                     break
                 else:
                     move_num -= 1
@@ -110,6 +113,7 @@ def game_loop(player):
                 elif(action == "jump"):  # Progresses to next area
                     print("You're insane. Just wanted to mention that.")
                     move_num += 1
+                    curLocBool[i] = True
                     break
                 else:
                     move_num -= 1
@@ -131,6 +135,7 @@ def game_loop(player):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "leave through hatch"):
                     move_num += 1
+                    curLocBool[i] = True
                     break  # Progresses to next area
                 else:
                     move_num -= 1
@@ -156,6 +161,7 @@ def game_loop(player):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "enter next class"):  # Progresses to next area
                     move_num += 1
+                    curLocBool[i] = True
                     break
                 else:
                     move_num -= 1
@@ -171,6 +177,7 @@ def game_loop(player):
                 elif (action == "map"):
                     print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
                 elif(action == "pull green light"):
+                    curLocBool[i] = True
                     return(1)  # Bad Ending
                 elif(action == "inspect container"):
                     print("It looks exactly like the container the green light"
@@ -184,8 +191,10 @@ def game_loop(player):
                           "Red Light' has been added to commands!")
                     secret = True
                 elif(action == "pull red light" and secret is True):
+                    curLocBool[i] = True
                     return(1)  # Bad Ending
                 elif(action == "pull both lights" and secret is True):
+                    curLocBool[i] = True
                     break
                 else:
                     move_num -= 1

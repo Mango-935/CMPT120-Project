@@ -2,8 +2,8 @@
 # Basics of our final game project
 
 
-def change(location, score):
-    return (location + 1, score + 5)  # Returns new location and new score
+def change(score):
+    return (score + 5)  # Returns new location and new score
 
 
 def intro():
@@ -22,46 +22,36 @@ def intro():
 
 
 def game_loop(player):
-    curLoc = 0  # Initializes current location
     curPoints = 0  # Initializes current score
-    time_limit = 10 # sets max command limit
+    time_limit = 12 # sets max command limit
     move_num = 0 # sets your current move number
     light = False  # Used for hidden ending
     secret = False  # Used for hidden ending
-    loc_mall = player + ", you find yourself in a dimly lit mall. The walls "
-    loc_mall += "are bare, revealing cracked bricks and sheetrock."
-    loc_trench = "You find yourself in a trench. Dirt, grime, and rocks tumble"
-    loc_trench += " into the center path as you stand there."
-    loc_balloon = player + ", you find yourself in an air balloon. The "
-    loc_balloon += "fabric seems strained, as if it could rip any moment."
-    loc_darkRoom = "You find yourself in a pitch black room. There is a "
-    loc_darkRoom += "single green light and an empty container in the center, "
-    loc_darkRoom += "dangling \nfrom the ceiling."
-    loc_school = player + " you find yourself in an abandoned classroom of "
-    loc_school += "your old school. There are old books and backpacks laying"
-    loc_school += " about the \nroom."
-    loc_helipad = "You find yourself on a helipad in the dead of night."
-    loc_helipad += " The wind batters against you, disturbing your focus."
+    curLoc = [player + ", you find yourself in a dimly lit mall. The walls "
+              "are bare, revealing cracked bricks and sheetrock.",  # Mall
+              "You find yourself in a trench. Dirt, grime, and rocks tumble"
+              " into the center path as you stand there.",  # Trench
+              player + ", you find yourself in an air balloon. The "
+              "fabric seems strained, as if it could rip any moment.",  # Balloon
+              player + ", you find yourself",  # Stadium
+              "You find yourself on a helipad in the dead of night."
+              " The wind batters against you, disturbing your focus.",  # Helipad
+              "You find yourself",  # Boat
+              player + " you find yourself in an abandoned classroom of "
+              "your old school. There are old books and backpacks laying"
+              " about the \nroom.",
+              "You find yourself in a pitch black room. There is a "
+              "single green light and an empty container in the center, "
+              "dangling \nfrom the ceiling."]
     # Descriptions of each location given to the user.
 
-    for i in range(6):
-        if (curLoc == 0):
-            print(loc_mall)
-        elif (curLoc == 1):
-            print(loc_trench)
-        elif (curLoc == 2):
-            print(loc_balloon)
-        elif (curLoc == 3):
-            print(loc_helipad)
-        elif (curLoc == 4):
-            print(loc_school)
-        elif (curLoc == 5):
-            print(loc_darkRoom)
+    for i in range(len(curLoc)):
+        print(curLoc[i])
         # Cycles through locations
         while (True):
             if (move_num >= time_limit):
                     return (2)
-            if (curLoc == 0):
+            if (i == 0):
                 action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -85,7 +75,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-            elif (curLoc == 1):  # Gives valid commands
+            elif (i == 1):  # Gives valid commands
                 action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -104,7 +94,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-            elif (curLoc == 2):  # Gives valid commands
+            elif (i == 2):  # Gives valid commands
                 action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -126,7 +116,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-            elif (curLoc == 3):  # Gives valid commands
+            elif (i == 3):  # Gives valid commands
                 action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -147,7 +137,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-            elif (curLoc == 4):  # Gives valid commands
+            elif (i == 4):  # Gives valid commands
                 action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -172,7 +162,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-            elif (curLoc == 5):  # Gives valid commands
+            elif (i == 5):  # Gives valid commands
                 action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n").lower()
                 if (action == "quit"):
                     return (None)
@@ -202,7 +192,7 @@ def game_loop(player):
                     print("\nSorry, didn't quite catch that.")
                 move_num += 1
 
-        curLoc, curPoints = change(curLoc, curPoints)
+        curPoints = change( curPoints)
         # Changes location and score
     return(0)  # True Ending
 

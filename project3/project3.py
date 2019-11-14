@@ -1,9 +1,7 @@
 # Chris Danyluk & Jeremy Gargana
 # Basics of our final game project
 
-
-def goto(score):
-    return (score + 5)  # Returns new location and new score
+from data import data
 
 
 def intro():
@@ -25,11 +23,6 @@ def customization():
 
 
 def init_game_data(player):
-    curPoints = 0  # Initializes current score
-    time_limit = 20 # sets max command limit
-    move_num = 0 # sets your current move number
-    light = False  # Used for hidden ending
-    secret = False  # Used for hidden ending
     curLoc = [player + ", you find yourself in a dimly lit mall. The walls "
               "are bare, revealing cracked bricks and sheetrock.",  # Mall
               "You find yourself in a trench. Dirt, grime, and rocks tumble"
@@ -48,8 +41,10 @@ def init_game_data(player):
               "You find yourself in a pitch black room. There is a "
               "single green light and an empty container in the center, "
               "dangling \nfrom the ceiling."]  # DarkRoom
-    curLocBool = [False, False, False, False, False, False, False, False]
     # Descriptions of each location given to the user.
+    curLocBool = [False, False, False, False, False, False, False, False]
+    game_data = data(0, 20, 0, False, False, curLoc, curLocBool)
+    return game_data
 
 
 def show_scene(scene):
@@ -57,7 +52,7 @@ def show_scene(scene):
     # Prints the description for the location
 
 
-def get_input(i)
+def get_input(i):
     if (i == 0):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
         if (action != "inspect walls" and action != "move south" and action != "turn on lights"):
@@ -181,9 +176,9 @@ def update(action):
 
 
 def game_loop(player):
-    data = init_game_data(player)
-    for i in range(len(curLoc)):
-        show_scene(curLoc[i])
+    game_data = init_game_data(player)
+    for i in range(len(game_data.getLocation())):
+        show_scene(game_data.getLocation()[i])
         action = get_input(i)
         update(action)
         # Cycles through locations

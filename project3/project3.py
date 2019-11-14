@@ -13,7 +13,6 @@ def intro():
           "As you look around, you notice that you are infact in a Mall.\n")
     # Gives user title and background info
 
-    hhhhhhhhh
 
 
 def customization():

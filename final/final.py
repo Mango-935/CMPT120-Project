@@ -247,8 +247,16 @@ def outro(cont):
     print("Game designed and programmed by Jeremy Gargana & Chris Danyluk.\n"
           "All rights belong to thus and you now owe us $20 for pirating our "
           "life's work :)")  # Credits
-
-
+    
+    replay = input("Would you like to play again?: ")
+        
+        if replay == "yes":
+            main()
+        elif replay == "no":
+            break 
+        else:
+            print("Please choose yes or no.")   
+        
 def main():
     intro()
     player = customization()

@@ -26,7 +26,7 @@ def customization():
 
 def init_game_data(player):
     curPoints = 0  # Initializes current score
-    time_limit = 12 # sets max command limit
+    time_limit = 20 # sets max command limit
     move_num = 0 # sets your current move number
     light = False  # Used for hidden ending
     secret = False  # Used for hidden ending
@@ -63,7 +63,7 @@ def get_input(i)
         if (action != "inspect walls" and action != "move south" and action != "turn on lights"):
             action = None
     elif (i == 1):  # Gives valid commands
-        action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n").lower()
+        action = input("\nPossible actions:\nFollow the Trench\nLook Over\nPoints\nMap\nQuit\n").lower()
         if (action != "follow the trench" and action != "look over"):
             action = None
     elif (i == 2):  # Gives valid commands
@@ -71,7 +71,7 @@ def get_input(i)
         if (action != "jump" and action != "watch"):
             action = None
     elif (i == 3):  # Gives valid commands
-        action = input("\nPossible actions:\nInspect crowd\nView field\nHead toward stands\nPoints\nMap\nQuit\n")
+        action = input("\nPossible actions:\nInspect Crowd\nView Field\nHead Toward Stands\nPoints\nMap\nQuit\n")
         if (action != "inspect crowd" and action != "view field" and action != "head towards stands"):
             action = None
     elif (i == 4):  # Gives valid commands
@@ -117,11 +117,15 @@ def update(action):
               "beautiful. You only wish to know how and why the "
               "exit to a mall was a trench, and when you stepped "
               "into an already flying hot air balloon.")
-    elif(action == "jump"):
+    elif(action == "jump"):  # Progresses to next area
         print("You're insane. Just wanted to mention that.")
         curLocBool[i] = True
-    elif(action == ""):
-
+    elif(action == "inspect crowd"):
+        print("As you look through the cheering crowd around you, you notice something very unsettling. No one has a face, almost as if it had been stolen.")
+    elif(action == "view field"):
+        print("You look at into the field, and see no one there. The crowd deafens you with their unintelligeable chanting, but no one is playing.")
+    elif(action == "head toward stands"):  # Progresses to next area
+        curLocBool[i] = True
     elif(action == "steal lights"):
         print("Congrats, you just stole a light from a helipad. "
               "I'm not sure if that is illegal so you might want"
@@ -129,8 +133,10 @@ def update(action):
         light = True
     elif(action == "leave through hatch"):
         curLocBool[i] = True
-    elif(action == ""):
-
+    elif(action == "gaze out"):
+        print("You attempt to gaze out into the river, but the jerking of the boat makes you so nauseous that you can barely see straight.")
+    elif(action == "head inside"):
+        curLocBool[i] = True
     elif(action == "take bag"):
         print("You figure these 1st graders probably have some "
               "good survival tools, for some reason, so you "
@@ -175,7 +181,7 @@ def update(action):
 
 
 def game_loop(player):
-    init_game_data(player)
+    data = init_game_data(player)
     for i in range(len(curLoc)):
         show_scene(curLoc[i])
         action = get_input(i)

@@ -28,13 +28,16 @@ def init_game_data(player):
               "You find yourself in a trench. Dirt, grime, and rocks tumble"
               " into the center path as you stand there.",  # Trench
               player + ", you find yourself in an air balloon. The "
-              "fabric seems strained, as if it could rip any moment.",  # Balloon
+              "fabric seems strained, as if it could rip any "
+              "moment.",  # Balloon
               player + ", you find yourself in a baseball stadium. "
               "The roar of the crowd deafens you.",  # Stadium
               "You find yourself on a helipad in the dead of night."
-              " The wind batters against you, disturbing your focus.",  # Helipad
+              " The wind batters against you, disturbing your "
+              "focus.",  # Helipad
               "You find yourself on a boat in the middle of a river. The "
-              "intense waves are almost making the boat capsize. Almost.",  # Boat
+              "intense waves are almost making the boat capsize. "
+              "Almost.",  # Boat
               player + " you find yourself in an abandoned classroom of "
               "your old school. There are old books and backpacks laying"
               " about the \nroom.",  # School
@@ -54,36 +57,57 @@ def show_scene(scene):
 
 def get_input(i):
     if (i == 0):  # Gives valid commands
-        action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
-        if (action != "inspect walls" and action != "move south" and action != "turn on lights" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn "
+                       "on Lights\nPoints\nMap\nQuit\n").lower()
+        if (action != "inspect walls" and action != "move south" and
+                action != "turn on lights" and action != "points" and
+                action != "map" and action != "quit"):
             action = None
     elif (i == 1):  # Gives valid commands
-        action = input("\nPossible actions:\nFollow the Trench\nLook Over\nPoints\nMap\nQuit\n").lower()
-        if (action != "follow the trench" and action != "look over" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nFollow the Trench\nLook Over\n"
+                       "Points\nMap\nQuit\n").lower()
+        if (action != "follow the trench" and action != "look over" and
+                action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 2):  # Gives valid commands
-        action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n").lower()
-        if (action != "jump" and action != "watch" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\n"
+                       "Quit\n").lower()
+        if (action != "jump" and action != "watch" and action != "points" and
+                action != "map" and action != "quit"):
             action = None
     elif (i == 3):  # Gives valid commands
-        action = input("\nPossible actions:\nInspect Crowd\nView Field\nHead Toward Stands\nPoints\nMap\nQuit\n")
-        if (action != "inspect crowd" and action != "view field" and action != "head towards stands" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
+                       "Head Toward Stands\nPoints\nMap\nQuit\n")
+        if (action != "inspect crowd" and action != "view field" and
+                action != "head towards stands" and action != "points" and
+                action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
-        action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n").lower()
-        if (action != "leave through hatch" and action != "steal lights" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights"
+                       "\nPoints\nMap\nQuit\n").lower()
+        if (action != "leave through hatch" and action != "steal lights" and
+                action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
-        action = input("\nPossible actions:\nGaze out\nHead inside\nPoints\nMap\nQuit\n")
-        if (action != "gaze out" and action != "head inside" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nGaze out\nHead inside\nPoints\n"
+                       "Map\nQuit\n")
+        if (action != "gaze out" and action != "head inside" and
+                action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 6):  # Gives valid commands
-        action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n").lower()
-        if (action != "take bag" and action != "view books" and action != "enter next class" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next"
+                       " Class\nPoints\nMap\nQuit\n").lower()
+        if (action != "take bag" and action != "view books" and
+                action != "enter next class" and action != "points" and
+                action != "map" and action != "quit"):
             action = None
     elif (i == 7):  # Gives valid commands
-        action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n").lower()
-        if (action != "pull green light" and action != "inspect container" and action != "add red light" and action != "pull red light" and action != "pull both lights" and action != "points" and action != "map" and action != "quit"):
+        action = input("\nPossible actions:\nPull Green Light\nInspect "
+                       "Container\nPoints\nMap\nQuit\n").lower()
+        if (action != "pull green light" and action != "inspect container" and
+                action != "add red light" and action != "pull red light" and
+                action != "pull both lights" and action != "points" and
+                action != "map" and action != "quit"):
             action = None
     return action
 
@@ -117,9 +141,13 @@ def update(game_data, action, i):
         print("You're insane. Just wanted to mention that.")
         game_data.setLocBool(i)
     elif(action == "inspect crowd"):
-        print("As you look through the cheering crowd around you, you notice something very unsettling. No one has a face, almost as if it had been stolen.")
+        print("As you look through the cheering crowd around you, you notice "
+              "something very unsettling. No one has a face, almost as if it "
+              "had been stolen.")
     elif(action == "view field"):
-        print("You look at into the field, and see no one there. The crowd deafens you with their unintelligeable chanting, but no one is playing.")
+        print("You look at into the field, and see no one there. The crowd "
+              "deafens you with their unintelligeable chanting, but no "
+              "one is playing.")
     elif(action == "head toward stands"):  # Progresses to next area
         game_data.setLocBool(i)
     elif(action == "steal lights"):
@@ -130,7 +158,8 @@ def update(game_data, action, i):
     elif(action == "leave through hatch"):
         game_data.setLocBool(i)
     elif(action == "gaze out"):
-        print("You attempt to gaze out into the river, but the jerking of the boat makes you so nauseous that you can barely see straight.")
+        print("You attempt to gaze out into the river, but the jerking of the "
+              "boat makes you so nauseous that you can barely see straight.")
     elif(action == "head inside"):
         game_data.setLocBool(i)
     elif(action == "take bag"):
@@ -165,15 +194,14 @@ def update(game_data, action, i):
     elif (action == "points"):
         print("Score: ", game_data.getScore())
     elif (action == "map"):
-        print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat -> School -> ???")
+        print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat "
+              "-> School -> ???")
     else:
         game_data.incMove_Num(-1)
         print("\nSorry, didn't quite catch that.")
     game_data.incMove_Num(1)
     game_data.goto()
     # Changes score
-    
-    
 
 
 def game_loop(player):
@@ -210,6 +238,7 @@ def outro(cont):
               "Over' appears above you with smaller text saying 'Cause of "
               "death: Time Out'. It would appear you are in some kind of game"
               " and your too slow to keep yourself alive. Congrats!")
+        # Time out ending
     else:
         print("\nWow. You are actually really bad at games or have decided "
               "that this is not the greatest thing you could be doing today. "

@@ -2,7 +2,7 @@
 # Basics of our final game project
 
 
-def change(score):
+def goto(score):
     return (score + 5)  # Returns new location and new score
 
 
@@ -14,6 +14,9 @@ def intro():
           "not in your room.\n"
           "As you look around, you notice that you are infact in a Mall.\n")
     # Gives user title and background info
+
+
+def customization():
     player = input("You have to think hard, but eventually you remember your "
                    "own name(If you did not remember your name, life would be"
                    "\neasier. Trust me on this one): ")
@@ -21,7 +24,7 @@ def intro():
     # Gets user name for further messages and returns it
 
 
-def game_loop(player):
+def init_game_data(player):
     curPoints = 0  # Initializes current score
     time_limit = 12 # sets max command limit
     move_num = 0 # sets your current move number
@@ -48,164 +51,136 @@ def game_loop(player):
     curLocBool = [False, False, False, False, False, False, False, False]
     # Descriptions of each location given to the user.
 
+
+def show_scene(scene):
+    print(scene)
+    # Prints the description for the location
+
+
+def get_input(i)
+    if (i == 0):  # Gives valid commands
+        action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
+        if (action != "inspect walls" and action != "move south" and action != "turn on lights"):
+            action = None
+    elif (i == 1):  # Gives valid commands
+        action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n").lower()
+        if (action != "follow the trench" and action != "look over"):
+            action = None
+    elif (i == 2):  # Gives valid commands
+        action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n").lower()
+        if (action != "jump" and action != "watch"):
+            action = None
+    elif (i == 3):  # Gives valid commands
+        action = input("\nPossible actions:\nInspect crowd\nView field\nHead toward stands\nPoints\nMap\nQuit\n")
+        if (action != "inspect crowd" and action != "view field" and action != "head towards stands"):
+            action = None
+    elif (i == 4):  # Gives valid commands
+        action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n").lower()
+        if (action != "leave through hatch" and action != "steal lights"):
+            action = None
+    elif (i == 5):  # Gives valid commands
+        action = input("\nPossible actions:\nGaze out\nHead inside\nPoints\nMap\nQuit\n")
+        if (action != "gaze out" and action != "head inside"):
+            action = None
+    elif (i == 6):  # Gives valid commands
+        action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n").lower()
+        if (action != "take bag" and action != "view books" and action != "enter next class"):
+            action = None
+    elif (i == 7):  # Gives valid commands
+        action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n").lower()
+        if (action != "pull green light" and action != "inspect container" and action != "add red light" and action != "pull red light" and action != "pull both lights"):
+            action = None
+
+
+def update(action):
+    if (move_num >= time_limit):
+        return (2)
+    if (action == "quit"):
+        return (3)
+    elif(action == "inspect walls"):
+        print("You walk over to the walls and make out a few "
+              "pictures etched into the walls. You cannot "
+              "make heads nor tails of them\nthough.")
+    elif (action == "turn on lights"):
+        print("You find the circuit breaker and fix the lights. "
+              "You immediately regret doing that as the sudden "
+              "flash blinds before thelights die down again.")
+    elif(action == "move south"):  # Progresses to next area
+        curLocBool[i] = True
+    elif(action == "look over"):
+        print("You peer over the trench wall to see nothing but "
+              "dust for miles around. It's quiet, too quiet.")
+    elif(action == "follow the trench"):  # Progresses to next area
+        curLocBool[i] = True
+    elif(action == "watch"):
+        print("You look out over the city at night, it's "
+              "beautiful. You only wish to know how and why the "
+              "exit to a mall was a trench, and when you stepped "
+              "into an already flying hot air balloon.")
+    elif(action == "jump"):
+        print("You're insane. Just wanted to mention that.")
+        curLocBool[i] = True
+    elif(action == ""):
+
+    elif(action == "steal lights"):
+        print("Congrats, you just stole a light from a helipad. "
+              "I'm not sure if that is illegal so you might want"
+              " to leave, soon.")  # Allows for secret ending
+        light = True
+    elif(action == "leave through hatch"):
+        curLocBool[i] = True
+    elif(action == ""):
+
+    elif(action == "take bag"):
+        print("You figure these 1st graders probably have some "
+              "good survival tools, for some reason, so you "
+              "take one of the moreintact bags.")
+    elif(action == "view books"):
+        print("You look at one of the books on the 1st graders "
+              "desk. It reads 'Python Programming: An Introduction"
+              " to Computer \nScience'. You wonder if these made "
+              "up kids could make a game like Zork.")
+    elif(action == "pull green light"):
+        curLocBool[i] = True
+        return(1)  # Bad Ending
+    elif(action == "inspect container"):
+        print("It looks exactly like the container the green light"
+              " is stored in. A small light rod could be placed"
+              " inside.")
+        if (light is True):
+            print("\n'Add Red Light' has been added to commands!")
+    elif(action == "add red light" and light is True):
+        print("You placed the rod you stole from the helicopter "
+              "pad into the container. It fits perfectly.\n'Pull "
+              "Red Light' has been added to commands!")
+        secret = True
+    elif(action == "pull red light" and secret is True):
+        curLocBool[i] = True
+        return(1)  # Bad Ending
+    elif(action == "pull both lights" and secret is True):
+        curLocBool[i] = True
+        return(0)  # True Ending
+    elif (action == "points"):
+        print("Score: ", curPoints)
+    elif (action == "map"):
+        print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat -> School -> ???")
+    else:
+        move_num -= 1
+        print("\nSorry, didn't quite catch that.")
+    move_num += 1
+    curPoints = change( curPoints)
+    # Changes score
+    
+    
+
+
+def game_loop(player):
+    init_game_data(player)
     for i in range(len(curLoc)):
-        print(curLoc[i])
+        show_scene(curLoc[i])
+        action = get_input(i)
+        update(action)
         # Cycles through locations
-        while (True):
-            if (move_num >= time_limit):
-                    return (2)
-            if (i == 0):
-                action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn on Lights\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif(action == "inspect walls"):
-                    print("You walk over to the walls and make out a few "
-                          "pictures etched into the walls. You cannot "
-                          "make heads nor tails of them\nthough.")
-                elif (action == "turn on lights"):
-                    print("You find the circuit breaker and fix the lights. "
-                          "You immediately regret doing that as the sudden "
-                          "flash blinds before thelights die down again.")
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "move south"):  # Progresses to next area
-                    move_num += 1
-                    curLocBool[i] = True
-                    break
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-            elif (i == 1):  # Gives valid commands
-                action = input("\nPossible actions:\nFollow the trench\nLook Over\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif(action == "look over"):
-                    print("You peer over the trench wall to see nothing but "
-                          "dust for miles around. It's quiet, too quiet.")
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "follow the trench"):  # Progresses to next area
-                    move_num += 1
-                    curLocBool[i] = True
-                    break
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-            elif (i == 2):  # Gives valid commands
-                action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif(action == "watch"):
-                    print("You look out over the city at night, it's "
-                          "beautiful. You only wish to know how and why the "
-                          "exit to a mall was a trench, and when you stepped "
-                          "into an already flying hot air balloon.")
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "jump"):  # Progresses to next area
-                    print("You're insane. Just wanted to mention that.")
-                    move_num += 1
-                    curLocBool[i] = True
-                    break
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-            elif (i == 3):  # Gives valid commands
-                action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif(action == "steal lights"):
-                    print("Congrats, you just stole a light from a helipad. "
-                          "I'm not sure if that is illegal so you might want"
-                          " to leave, soon.")  # Allows for secret ending
-                    light = True
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "leave through hatch"):
-                    move_num += 1
-                    curLocBool[i] = True
-                    break  # Progresses to next area
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-            elif (i == 4):  # Gives valid commands
-                action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next Class\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif(action == "take bag"):
-                    print("You figure these 1st graders probably have some "
-                          "good survival tools, for some reason, so you "
-                          "take one of the moreintact bags.")
-                elif(action == "view books"):
-                    print("You look at one of the books on the 1st graders "
-                          "desk. It reads 'Python Programming: An Introduction"
-                          " to Computer \nScience'. You wonder if these made "
-                          "up kids could make a game like Zork.")
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "enter next class"):  # Progresses to next area
-                    move_num += 1
-                    curLocBool[i] = True
-                    break
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-            elif (i == 5):  # Gives valid commands
-                action = input("\nPossible actions:\nPull Green Light\nInspect Container\nPoints\nMap\nQuit\n").lower()
-                if (action == "quit"):
-                    return (None)
-                elif (action == "points"):
-                    print("Score: ", curPoints)
-                elif (action == "map"):
-                    print("Mall -> Trench -> Balloon -> Helipad -> School -> ???")
-                elif(action == "pull green light"):
-                    curLocBool[i] = True
-                    return(1)  # Bad Ending
-                elif(action == "inspect container"):
-                    print("It looks exactly like the container the green light"
-                          " is stored in. A small light rod could be placed"
-                          " inside.")
-                    if (light is True):
-                        print("\n'Add Red Light' has been added to commands!")
-                elif(action == "add red light" and light is True):
-                    print("You placed the rod you stole from the helicopter "
-                          "pad into the container. It fits perfectly.\n'Pull "
-                          "Red Light' has been added to commands!")
-                    secret = True
-                elif(action == "pull red light" and secret is True):
-                    curLocBool[i] = True
-                    return(1)  # Bad Ending
-                elif(action == "pull both lights" and secret is True):
-                    curLocBool[i] = True
-                    break
-                else:
-                    move_num -= 1
-                    print("\nSorry, didn't quite catch that.")
-                move_num += 1
-
-        curPoints = change( curPoints)
-        # Changes location and score
-    return(0)  # True Ending
 
 
 def outro(cont):
@@ -238,7 +213,8 @@ def outro(cont):
 
 
 def main():
-    player = intro()
+    intro()
+    player = customization()
     cont = game_loop(player)
     outro(cont)
 

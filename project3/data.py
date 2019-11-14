@@ -1,9 +1,11 @@
 # Chris Danyluk & Jeremy Gargana
 # Class to hold game data
 
+
 class data:
 
-    def __init__(self, curPoints, time_limit, move_num, light, secret, curLoc, curLocBool):
+    def __init__(self, curPoints, time_limit, move_num, light, secret,
+                 curLoc, curLocBool):
         self.score = curPoints
         self.time_limit = time_limit
         self.move_num = move_num
@@ -11,19 +13,20 @@ class data:
         self.secret = secret
         self.curLoc = curLoc
         self.curLB = curLocBool
+        # Initializes data to be used in game loop
 
     def getScore(self):
         return self.score
-    
+
     def getTime_Limit(self):
         return self.time_limit
-        
+
     def getMove_Num(self):
         return self.move_num
 
     def getLight(self):
         return self.light
-    
+
     def getSecret(self):
         return self.secret
 
@@ -47,3 +50,4 @@ class data:
 
     def setLocBool(self, i):
         self.curLB[i] = True
+    # Basic getters and setters

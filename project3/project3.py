@@ -13,6 +13,8 @@ def intro():
           "As you look around, you notice that you are infact in a Mall.\n")
     # Gives user title and background info
 
+    hhhhhhhhh
+
 
 def customization():
     player = input("You have to think hard, but eventually you remember your "

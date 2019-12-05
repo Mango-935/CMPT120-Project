@@ -2,7 +2,7 @@
 # Class that holds the player's info
 
 
-class Player.py:
+class Player:
 
     def __init__(self, name, curLoc):
         self.name = name
@@ -26,11 +26,19 @@ class Player.py:
     def getInventory(self):
         return self.inventory
 
+    def goto(self, loc):
+        self.score += 5
+        self.curLoc = loc
+        self.curLoc.getDescription()
+
     def take(self, item):
-        if (self.curLoc.removeItem(item) is True):
-            self.inventory.append(item)
+        if (self.curLoc.getSearched())
+            if (self.curLoc.removeItem(item) is True):
+                self.inventory.append(item)
+            else:
+                print("I'm sorry, That item was already taken or doesn't exist.")
         else:
-            print("I'm Sorry! That item was already taken or doesn't exist.")
+            print("I'm sorry, I don't understand.")
 
     def use(self, item):
         if (self.inventory.index(item) >= 0):
@@ -38,7 +46,7 @@ class Player.py:
             if (self.inventory[self.inventory.index(item)].getNumUses() == 0):
                 self.inventory.remove(item)
         else:
-            print("I'm Sorry! That item was already used or doesn't exist.")
+            print("I'm sorry, That item was already used or doesn't exist.")
 
     def drop(self, item):
         self.inventory.remove(item)

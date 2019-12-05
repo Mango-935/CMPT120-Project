@@ -1,9 +1,11 @@
 # Chris Danyluk & Jeremy Gargana
 # Final version of our final game project
 
-from data import data
+from player import Player
+from locale import locale
+from item import Item
 
-
+#Create time limit variable again !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def intro():
     print("Welcome to Super Duper Mario!\nThis game was inspired by Adventure "
           "& Zork.\n"

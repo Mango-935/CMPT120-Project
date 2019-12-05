@@ -19,6 +19,7 @@ class Locale:
             return self.description[1]
         else:
             return self.description[0]
+            was_visited = True
 
     def getSearched(self):
         return self.was_searched

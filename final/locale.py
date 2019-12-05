@@ -26,3 +26,10 @@ class Locale:
     def getItems(self):
         was_searched = True
         return items
+
+    def removeItem(self, item):
+        if (self.items.index(item) >= 0)
+            items.remove(item)
+            return True
+        else:
+            return False

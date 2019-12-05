@@ -9,9 +9,6 @@ class Item:
         self.numUses = numUses
         self.condUse = condUse
 
-    def getDescription(self):
-        return self.description
-
     def getNumUses(self):
         return self.numUses
 
@@ -21,6 +18,4 @@ class Item:
     def useItem(self):
         if (numUses > 0):
             numUses -= 1
-            return True
-        else:
-            return False
+            print(self.description)

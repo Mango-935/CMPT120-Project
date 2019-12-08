@@ -105,69 +105,76 @@ def get_input(i):
     elif (i == 1):  # Gives valid commands
         action = input("\nPossible actions:\nFollow the Trench\nLook Over\n"
                        "Look\nSearch\nTake\nUse\nInventory\nPoints\n"
-                       "Map\nQuit\n\n").lower()
+                       "Map\nBacktrack\nQuit\n\n").lower()
         if (action != "follow the trench" and action != "look over" and
                 action != "look" and action != "search" and action != "take"
                 and action != "use" and action != "inventory" and
-                action != "points" and action != "map" and action != "quit"):
+                action != "points" and action != "map" and
+                action != "backtrack" and action != "quit"):
             action = None
     elif (i == 2):  # Gives valid commands
         action = input("\nPossible actions:\nJump\nWatch\nLook\nSearch\n"
-                       "Take\nUse\nInventory\nPoints\nMap\n"
+                       "Take\nUse\nInventory\nPoints\nMap\nBacktrack\n"
                        "Quit\n\n").lower()
         if (action != "jump" and action != "watch" and action != "look" and
-            action != "search" and action != "take" and action != "use" and
-            action != "inventory" and action != "points" and
-                action != "map" and action != "quit"):
+                action != "search" and action != "take" and action != "use" and
+                action != "inventory" and action != "points" and
+                action != "map" and action != "backtrack" and
+                action != "quit"):
             action = None
     elif (i == 3):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
                        "Head Toward Stands\nLook\nSearch\nTake\nUse\n"
-                       "Inventory\nPoints\nMap\nQuit\n\n")
+                       "Inventory\nPoints\nMap\nBacktrack\nQuit\n\n")
         if (action != "inspect crowd" and action != "view field" and
                 action != "head toward stands" and action != "look" and
                 action != "search" and action != "take" and action != "use"
                 and action != "inventory" and action != "points" and
-                action != "map" and action != "quit"):
+                action != "map" and action != "backtrack"
+                and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
         action = input("\nPossible actions:\nLeave Through Hatch"
                        "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap"
-                       "\nQuit\n\n").lower()
+                       "\nBacktrack\nQuit\n\n").lower()
         if (action != "leave through hatch" and action != "look" and
-            action != "search" and action != "take" and action != "use" and
-            action != "inventory" and action != "points" and action != "map"
+                action != "search" and action != "take" and action != "use"
+                and action != "inventory" and action != "points" and
+                action != "map" and action != "backtrack"
                 and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
         action = input("\nPossible actions:\nGaze out\nHead inside\nLook\n"
                        "Search\nTake\nUse\nInventory\nPoints\n"
-                       "Map\nQuit\n\n")
+                       "Map\nBacktrack\nQuit\n\n")
         if (action != "gaze out" and action != "head inside" and
                 action != "look" and action != "search" and action != "take"
                 and action != "use" and action != "inventory" and
-                action != "points" and action != "map" and action != "quit"):
+                action != "points" and action != "map" and
+                action != "backtrack" and action != "quit"):
             action = None
     elif (i == 6):  # Gives valid commands
         action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next"
                        " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints"
-                       "\nMap\nQuit\n\n").lower()
+                       "\nMap\nBacktrack\nQuit\n\n").lower()
         if (action != "take bag" and action != "view books" and
                 action != "enter next class" and action != "look" and
                 action != "search" and action != "take" and action != "use"
                 and action != "inventory" and action != "points" and
-                action != "map" and action != "quit"):
+                action != "map" and action != "backtrack" and
+                action != "quit"):
             action = None
     elif (i == 7):  # Gives valid commands
         action = input("\nPossible actions:\nPull Green Light\nInspect "
                        "Container\nLook\nSearch\nTake\nUse\nInventory\n"
-                       "Points\nMap\nQuit\n\n").lower()
+                       "Points\nMap\nBacktrack\nQuit\n\n").lower()
         if (action != "pull green light" and action != "inspect container" and
                 action != "add red light" and action != "pull red light" and
                 action != "pull both lights" and action != "look" and
                 action != "search" and action != "take" and action != "use" and
                 action != "inventory" and action != "points" and
-                action != "map" and action != "quit"):
+                action != "map" and action != "backtrack" and
+                action != "quit"):
             action = None
     return action
 
@@ -268,6 +275,8 @@ def update(game_data, action, i):
     elif (action == "map"):
         print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat "
               "-> School -> ???")
+    elif (action == "backtrack"):
+        return -2
     else:
         print("\nSorry, didn't quite catch that.")
     me.incMoveNum()
@@ -283,10 +292,13 @@ def game_loop(player):
     while (True):
         action = get_input(count)
         val = update(game_data, action, count)
-        if (val is not None and val != -1):
+        if (val is not None and val != -1 and val != -2):
             return val
-        if (val == -1):
+        elif (val == -1):
             count += 1
+            me.goto(curLocList[count])
+        elif (val == -2):
+            count -= 1
             me.goto(curLocList[count])
         # Cycles through locations
 

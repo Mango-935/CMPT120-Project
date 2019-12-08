@@ -84,55 +84,55 @@ def show_scene(scene):
 def get_input(i):
     if (i == 0):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn "
-                       "on Lights\nPoints\nMap\nQuit\n").lower()
+                       "on Lights\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
         if (action != "inspect walls" and action != "move south" and
-                action != "turn on lights" and action != "points" and
+                action != "turn on lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 1):  # Gives valid commands
         action = input("\nPossible actions:\nFollow the Trench\nLook Over\n"
-                       "Points\nMap\nQuit\n").lower()
+                       "Look\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
         if (action != "follow the trench" and action != "look over" and
-                action != "points" and action != "map" and action != "quit"):
+                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 2):  # Gives valid commands
-        action = input("\nPossible actions:\nJump\nWatch\nPoints\nMap\n"
+        action = input("\nPossible actions:\nJump\nWatch\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\n"
                        "Quit\n").lower()
-        if (action != "jump" and action != "watch" and action != "points" and
+        if (action != "jump" and action != "watch" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 3):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
-                       "Head Toward Stands\nPoints\nMap\nQuit\n")
+                       "Head Toward Stands\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n")
         if (action != "inspect crowd" and action != "view field" and
-                action != "head towards stands" and action != "points" and
+                action != "head towards stands" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
         action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights"
-                       "\nPoints\nMap\nQuit\n").lower()
+                       "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
         if (action != "leave through hatch" and action != "steal lights" and
-                action != "points" and action != "map" and action != "quit"):
+                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
-        action = input("\nPossible actions:\nGaze out\nHead inside\nPoints\n"
+        action = input("\nPossible actions:\nGaze out\nHead inside\nLook\nSearch\nTake\nUse\nInventory\nPoints\n"
                        "Map\nQuit\n")
         if (action != "gaze out" and action != "head inside" and
-                action != "points" and action != "map" and action != "quit"):
+                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 6):  # Gives valid commands
         action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next"
-                       " Class\nPoints\nMap\nQuit\n").lower()
+                       " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
         if (action != "take bag" and action != "view books" and
-                action != "enter next class" and action != "points" and
+                action != "enter next class" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 7):  # Gives valid commands
         action = input("\nPossible actions:\nPull Green Light\nInspect "
-                       "Container\nPoints\nMap\nQuit\n").lower()
+                       "Container\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
         if (action != "pull green light" and action != "inspect container" and
                 action != "add red light" and action != "pull red light" and
-                action != "pull both lights" and action != "points" and
+                action != "pull both lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     return action

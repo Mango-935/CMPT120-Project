@@ -18,4 +18,4 @@ class Item:
     def useItem(self):
         if (numUses > 0):
             numUses -= 1
-            print(self.description)
+        print(self.description)

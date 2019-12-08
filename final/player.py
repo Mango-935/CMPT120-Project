@@ -29,11 +29,13 @@ class Player:
     def goto(self, loc):
         self.score += 5
         self.curLoc = loc
-        self.curLoc.getDescription()
+        print(self.curLoc.getDescription())
 
     def take(self, item):
-        if (self.curLoc.getSearched())
-            if (self.curLoc.removeItem(item) is True):
+        if (self.curLoc.getSearched()):
+            if (self.curLoc.getItems() is None):
+                break
+            elif (self.curLoc.removeItem(item) is True):
                 self.inventory.append(item)
             else:
                 print("I'm sorry, That item was already taken or doesn't exist.")

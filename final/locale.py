@@ -29,7 +29,9 @@ class Locale:
         return items
 
     def removeItem(self, item):
-        if (self.items.index(item) >= 0)
+        if (self.items is None):
+            return False
+        elif (self.items.index(item) >= 0):
             items.remove(item)
             return True
         else:

@@ -47,10 +47,33 @@ def init_game_data(player):
               "You find yourself in a pitch black room. There is a "
               "single green light and an empty container in the center, "
               "dangling \nfrom the ceiling."]  # DarkRoom
+    b4CurLoc = ["You are inside an abandoned mall. You stand up and rub your eyes a little after your nap.",
+                player + ", you walk out the back door and are greeted by an old trench, 60 feet deep.",
+                "You are walking for a while, and then the world around you distorts. You magically appear in a balloon.",
+                player + ", the balloon crashed into a baseball stadium. Not sure why, but continuity demands it.",
+                "You head out of the stands, and once again, you seamlessly appear on a helipad.",
+                player + ", you fall about 6 ft into the hatch, onto a boat. You know, adding locations after the first four has seriously changed this story.",
+                "The boat docked in the window of a school classroom. Yup.",
+                player + ", You walk out into a dark room. A light flickers to life as the air become very hard to breathe."]
     # Descriptions of each location given to the user.
-    curLocBool = [False, False, False, False, False, False, False, False]
-    game_data = data(0, 20, 0, False, False, curLoc, curLocBool)
-    return game_data
+    Light = Item("It glows a faint red light. Still too dark to see anything better.", -1, True)
+    Medkit = Item("You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
+    BugSpray = Item("You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
+    Axe = Item("Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
+    # Items in game
+    Mall = Locale("Mall", b4CurLoc[0], curLoc[0], Medkit)
+    Trench = Locale("Trench", b4CurLoc[1], curLoc[1], BugSpray)
+    Balloon = Locale("Balloon", b4CurLoc[2], curLoc[2], None)
+    Stadium = Locale("Stadium", b4CurLoc[3], curLoc[3], None)
+    Helipad = Locale("Helipad", b4CurLoc[4], curLoc[4], [Light, Axe])
+    Boat = Locale("Boat", b4CurLoc[5], curLoc[5], BugSpray)
+    School = Locale("School", b4CurLoc[6], curLoc[6], None)
+    Darkroom = Locale("Dark Room", b4CurLoc[7], curLoc[7], None)
+    # All locations
+    curLocList = [Mall, Trench, Balloon, Stadium, Helipad, Boat, School, Darkroom]
+    x = Player(player, curLocList[0])
+    time = 24
+    return [x, curLocList, time]
 
 
 def show_scene(scene):

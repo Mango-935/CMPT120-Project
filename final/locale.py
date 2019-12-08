@@ -15,7 +15,7 @@ class Locale:
         return self.name
 
     def getDescription(self):
-        if (was_visited)
+        if (was_visited):
             return self.description[1]
         else:
             return self.description[0]
@@ -30,9 +30,11 @@ class Locale:
 
     def removeItem(self, item):
         if (self.items is None):
-            return False
-        elif (self.items.index(item) >= 0):
-            items.remove(item)
-            return True
-        else:
-            return False
+            return None
+        for i in (items):
+            y = items[i].getName()
+            if (item == y):
+                #x = self.items[i]
+                return items.pop(i)
+                #return x
+

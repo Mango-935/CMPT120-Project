@@ -10,6 +10,7 @@ class Player:
         self.curLoc = curLoc
         self.moveNum = 0
         self.inventory = []
+        self.secret = False
 
     def getName(self):
         return self.name
@@ -23,8 +24,20 @@ class Player:
     def getMoveNum(self):
         return self.moveNum
 
+    def incMoveNum(self):
+        self.moveNum += 1
+
     def getInventory(self):
-        return self.inventory
+        x = []
+        for i in (inventory):
+            x.append(inventory[i].getName())
+        return x
+
+    def getSecret(self):
+        return self.secret
+
+    def secret(self):
+        self.secret = True
 
     def goto(self, loc):
         self.score += 5
@@ -33,22 +46,24 @@ class Player:
 
     def take(self, item):
         if (self.curLoc.getSearched()):
-            if (self.curLoc.getItems() is None):
-                break
-            elif (self.curLoc.removeItem(item) is True):
-                self.inventory.append(item)
+            x = self.curLoc.removeItem(item)
+            if (x is not None):
+                self.inventory.append(x)
             else:
                 print("I'm sorry, That item was already taken or doesn't exist.")
         else:
             print("I'm sorry, I don't understand.")
 
     def use(self, item):
-        if (self.inventory.index(item) >= 0):
-            self.inventory[self.inventory.index(item)].useItem()
-            if (self.inventory[self.inventory.index(item)].getNumUses() == 0):
-                self.inventory.remove(item)
-        else:
-            print("I'm sorry, That item was already used or doesn't exist.")
+        for i in (inventory):
+            x = inventory[i].getName()
+            if (x == item):
+                self.inventory[self.inventory.index(item)].useItem()
+                if (self.inventory[self.inventory.index(item)].getNumUses() == 0):
+                    drop(inventory[i])
+                return True
+        print("I'm sorry, That item was already used or doesn't exist.")
+        return False
 
     def drop(self, item):
         self.inventory.remove(item)

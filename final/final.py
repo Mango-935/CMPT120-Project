@@ -139,7 +139,9 @@ def get_input(i):
 
 
 def update(game_data, action, i):
-    if (game_data.getMove_Num() >= game_data.getTime_Limit()):
+    me = game_data[0]
+    time = game_data[2]
+    if (me.getMoveNum() >= time):
         return (2)
     if (action == "quit"):
         return (3)
@@ -152,12 +154,12 @@ def update(game_data, action, i):
               "You immediately regret doing that as the sudden "
               "flash blinds before thelights die down again.")
     elif(action == "move south"):  # Progresses to next area
-        game_data.setLocBool(i)
+        return -1
     elif(action == "look over"):
         print("You peer over the trench wall to see nothing but "
               "dust for miles around. It's quiet, too quiet.")
     elif(action == "follow the trench"):  # Progresses to next area
-        game_data.setLocBool(i)
+        return -1
     elif(action == "watch"):
         print("You look out over the city at night, it's "
               "beautiful. You only wish to know how and why the "
@@ -165,7 +167,7 @@ def update(game_data, action, i):
               "into an already flying hot air balloon.")
     elif(action == "jump"):  # Progresses to next area
         print("You're insane. Just wanted to mention that.")
-        game_data.setLocBool(i)
+        return -1
     elif(action == "inspect crowd"):
         print("As you look through the cheering crowd around you, you notice "
               "something very unsettling. No one has a face, almost as if it "
@@ -175,19 +177,19 @@ def update(game_data, action, i):
               "deafens you with their unintelligeable chanting, but no "
               "one is playing.")
     elif(action == "head toward stands"):  # Progresses to next area
-        game_data.setLocBool(i)
+        return -1
     elif(action == "steal lights"):
         print("Congrats, you just stole a light from a helipad. "
               "I'm not sure if that is illegal so you might want"
               " to leave, soon.")  # Allows for secret ending
         game_data.obtLight()
     elif(action == "leave through hatch"):
-        game_data.setLocBool(i)
+        return -1
     elif(action == "gaze out"):
         print("You attempt to gaze out into the river, but the jerking of the "
               "boat makes you so nauseous that you can barely see straight.")
     elif(action == "head inside"):
-        game_data.setLocBool(i)
+        return -1
     elif(action == "take bag"):
         print("You figure these 1st graders probably have some "
               "good survival tools, for some reason, so you "
@@ -198,7 +200,6 @@ def update(game_data, action, i):
               " to Computer \nScience'. You wonder if these made "
               "up kids could make a game like Zork.")
     elif(action == "pull green light"):
-        game_data.setLocBool(i)
         return(1)  # Bad Ending
     elif(action == "inspect container"):
         print("It looks exactly like the container the green light"
@@ -212,10 +213,8 @@ def update(game_data, action, i):
               "Red Light' has been added to commands!")
         game_data.obtSecret()
     elif(action == "pull red light" and game_data.getSecret() is True):
-        game_data.setLocBool(i)
         return(1)  # Bad Ending
     elif(action == "pull both lights" and game_data.getSecret() is True):
-        game_data.setLocBool(i)
         return(0)  # True Ending
     elif (action == "points"):
         print("Score: ", game_data.getScore())
@@ -223,7 +222,6 @@ def update(game_data, action, i):
         print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat "
               "-> School -> ???")
     else:
-        game_data.incMove_Num(-1)
         print("\nSorry, didn't quite catch that.")
     game_data.incMove_Num(1)
     game_data.goto()
@@ -232,15 +230,18 @@ def update(game_data, action, i):
 
 def game_loop(player):
     game_data = init_game_data(player)
+    me = game_data[0]
+    curLocList = game_data[1]
+    time = game_data[2]
     count = 0
     while (True):
-        show_scene(game_data.getLocation()[count])
         action = get_input(count)
         val = update(game_data, action, count)
-        if (val is not None):
+        if (val is not None and val != -1):
             return val
-        if (game_data.getLocBool()[count] is True):
+        if (val == -1):
             count += 1
+            player.goto(curLocList[count])
         # Cycles through locations
 
 

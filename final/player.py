@@ -29,8 +29,8 @@ class Player:
 
     def getInventory(self):
         x = []
-        for i in (inventory):
-            x.append(inventory[i].getName())
+        for i in (self.inventory):
+            x.append(self.inventory[i].getName())
         return x
 
     def getSecret(self):
@@ -55,12 +55,12 @@ class Player:
             print("I'm sorry, I don't understand.")
 
     def use(self, item):
-        for i in (inventory):
-            x = inventory[i].getName()
+        for i in (self.inventory):
+            x = self.inventory[i].getName()
             if (x == item):
                 self.inventory[self.inventory.index(item)].useItem()
                 if (self.inventory[self.inventory.index(item)].getNumUses() == 0):
-                    drop(inventory[i])
+                    drop(self.inventory[i])
                 return True
         print("I'm sorry, That item was already used or doesn't exist.")
         return False

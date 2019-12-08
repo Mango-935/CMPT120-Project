@@ -20,6 +20,6 @@ class Item:
         return self.condUse
 
     def useItem(self):
-        if (numUses > 0):
-            numUses -= 1
+        if (self.numUses > 0):
+            self.numUses -= 1
         print(self.description)

@@ -15,26 +15,26 @@ class Locale:
         return self.name
 
     def getDescription(self):
-        if (was_visited):
+        if (self.was_visited is True):
             return self.description[1]
         else:
+            self.was_visited = True
             return self.description[0]
-            was_visited = True
 
     def getSearched(self):
         return self.was_searched
 
     def getItems(self):
-        was_searched = True
+        self.was_searched = True
         return items
 
     def removeItem(self, item):
         if (self.items is None):
             return None
-        for i in (items):
-            y = items[i].getName()
+        for i in (self.items):
+            y = self.items[i].getName()
             if (item == y):
                 #x = self.items[i]
-                return items.pop(i)
+                return self.items.pop(i)
                 #return x
 

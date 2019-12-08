@@ -21,6 +21,7 @@ def customization():
     player = input("You have to think hard, but eventually you remember your "
                    "own name(If you did not remember your name, life would be"
                    "\neasier. Trust me on this one): ")
+    print()
     return (player)
     # Gets user name for further messages and returns it
 
@@ -72,6 +73,7 @@ def init_game_data(player):
     # All locations
     curLocList = [Mall, Trench, Balloon, Stadium, Helipad, Boat, School, Darkroom]
     x = Player(player, curLocList[0])
+    print(x.getCurLoc().getDescription())
     time = 24
     return [x, curLocList, time]
 
@@ -79,52 +81,52 @@ def init_game_data(player):
 def get_input(i):
     if (i == 0):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn "
-                       "on Lights\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
+                       "on Lights\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
         if (action != "inspect walls" and action != "move south" and
                 action != "turn on lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 1):  # Gives valid commands
         action = input("\nPossible actions:\nFollow the Trench\nLook Over\n"
-                       "Look\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
+                       "Look\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
         if (action != "follow the trench" and action != "look over" and
                 action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 2):  # Gives valid commands
         action = input("\nPossible actions:\nJump\nWatch\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\n"
-                       "Quit\n").lower()
+                       "Quit\n\n").lower()
         if (action != "jump" and action != "watch" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 3):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
-                       "Head Toward Stands\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n")
+                       "Head Toward Stands\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n")
         if (action != "inspect crowd" and action != "view field" and
                 action != "head towards stands" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
         action = input("\nPossible actions:\nLeave Through Hatch"
-                       "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
+                       "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
         if (action != "leave through hatch" and
                 action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
         action = input("\nPossible actions:\nGaze out\nHead inside\nLook\nSearch\nTake\nUse\nInventory\nPoints\n"
-                       "Map\nQuit\n")
+                       "Map\nQuit\n\n")
         if (action != "gaze out" and action != "head inside" and
                 action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 6):  # Gives valid commands
         action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next"
-                       " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
+                       " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
         if (action != "take bag" and action != "view books" and
                 action != "enter next class" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 7):  # Gives valid commands
         action = input("\nPossible actions:\nPull Green Light\nInspect "
-                       "Container\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
+                       "Container\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
         if (action != "pull green light" and action != "inspect container" and
                 action != "add red light" and action != "pull red light" and
                 action != "pull both lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
@@ -246,7 +248,7 @@ def game_loop(player):
             return val
         if (val == -1):
             count += 1
-            player.goto(curLocList[count])
+            me.goto(curLocList[count])
         # Cycles through locations
 
 

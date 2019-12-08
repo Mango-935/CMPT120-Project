@@ -2,10 +2,10 @@
 # Final version of our final game project
 
 from player import Player
-from locale import locale
+from locale import Locale
 from item import Item
 
-#Create time limit variable again !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 def intro():
     print("Welcome to Super Duper Mario!\nThis game was inspired by Adventure "
           "& Zork.\n"
@@ -56,17 +56,17 @@ def init_game_data(player):
                 "The boat docked in the window of a school classroom. Yup.",
                 player + ", You walk out into a dark room. A light flickers to life as the air become very hard to breathe."]
     # Descriptions of each location given to the user.
-    Light = Item("It glows a faint red light. Still too dark to see anything better.", -1, True)
-    Medkit = Item("You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
-    BugSpray = Item("You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
-    Axe = Item("Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
+    Light = Item("Light", "It glows a faint red light. Still too dark to see anything better.", -1, True)
+    Medkit = Item("Medkit", "You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
+    BugSpray = Item("BugSpray", "You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
+    Axe = Item("Axe", "Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
     # Items in game
-    Mall = Locale("Mall", b4CurLoc[0], curLoc[0], Medkit)
-    Trench = Locale("Trench", b4CurLoc[1], curLoc[1], BugSpray)
+    Mall = Locale("Mall", b4CurLoc[0], curLoc[0], [Medkit])
+    Trench = Locale("Trench", b4CurLoc[1], curLoc[1], [BugSpray])
     Balloon = Locale("Balloon", b4CurLoc[2], curLoc[2], None)
     Stadium = Locale("Stadium", b4CurLoc[3], curLoc[3], None)
     Helipad = Locale("Helipad", b4CurLoc[4], curLoc[4], [Light, Axe])
-    Boat = Locale("Boat", b4CurLoc[5], curLoc[5], BugSpray)
+    Boat = Locale("Boat", b4CurLoc[5], curLoc[5], [BugSpray])
     School = Locale("School", b4CurLoc[6], curLoc[6], None)
     Darkroom = Locale("Dark Room", b4CurLoc[7], curLoc[7], None)
     # All locations
@@ -74,11 +74,6 @@ def init_game_data(player):
     x = Player(player, curLocList[0])
     time = 24
     return [x, curLocList, time]
-
-
-def show_scene(scene):
-    print(scene)
-    # Prints the description for the location
 
 
 def get_input(i):
@@ -109,9 +104,9 @@ def get_input(i):
                 action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
-        action = input("\nPossible actions:\nLeave Through Hatch\nSteal Lights"
+        action = input("\nPossible actions:\nLeave Through Hatch"
                        "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n").lower()
-        if (action != "leave through hatch" and action != "steal lights" and
+        if (action != "leave through hatch" and
                 action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
@@ -178,11 +173,6 @@ def update(game_data, action, i):
               "one is playing.")
     elif(action == "head toward stands"):  # Progresses to next area
         return -1
-    elif(action == "steal lights"):
-        print("Congrats, you just stole a light from a helipad. "
-              "I'm not sure if that is illegal so you might want"
-              " to leave, soon.")  # Allows for secret ending
-        game_data.obtLight()
     elif(action == "leave through hatch"):
         return -1
     elif(action == "gaze out"):
@@ -205,26 +195,41 @@ def update(game_data, action, i):
         print("It looks exactly like the container the green light"
               " is stored in. A small light rod could be placed"
               " inside.")
-        if (game_data.getLight() is True):
+        if (me.getInventory().count("Light") > 0):
             print("\n'Add Red Light' has been added to commands!")
-    elif(action == "add red light" and light is True):
+    elif(action == "add red light" and me.use("Light") is True):
         print("You placed the rod you stole from the helicopter "
               "pad into the container. It fits perfectly.\n'Pull "
               "Red Light' has been added to commands!")
-        game_data.obtSecret()
-    elif(action == "pull red light" and game_data.getSecret() is True):
+        me.secret()
+    elif(action == "pull red light" and me.getSecret() is True):
         return(1)  # Bad Ending
-    elif(action == "pull both lights" and game_data.getSecret() is True):
+    elif(action == "pull both lights" and me.getSecret() is True):
         return(0)  # True Ending
+    elif (action == "look"):
+        print(me.getCurLoc().getDescription())
+    elif (action == "search"):
+        x = me.getCurLoc().getItems()
+        for i in (x):
+            print(x[i])
+    elif (action == "take"):
+        x = input("Is there an item you wish to pick up?")
+        me.take(x)
+    elif (action == "use"):
+        x = input("What item would you like to use?")
+        me.use(x)
+    elif (action == "inventory"):
+        x = me.getInventory()
+        for i in (x):
+            print(x[i])
     elif (action == "points"):
-        print("Score: ", game_data.getScore())
+        print("Score: ", me.getScore())
     elif (action == "map"):
         print("Mall -> Trench -> Balloon -> Stadium -> Helipad -> Boat "
               "-> School -> ???")
     else:
         print("\nSorry, didn't quite catch that.")
-    game_data.incMove_Num(1)
-    game_data.goto()
+    me.incMoveNum()
     # Changes score
 
 
@@ -274,14 +279,14 @@ def outro(cont):
           "All rights belong to thus and you now owe us $20 for pirating our "
           "life's work :)")  # Credits
     
-    replay = input("Would you like to play again?: ")
+    replay = input("Would you like to play again?: ").lower()
         
-        if replay == "yes":
-            main()
-        elif replay == "no":
-            break 
-        else:
-            print("Please choose yes or no.")   
+    if replay == "yes":
+        main()
+    elif replay == "no":
+        return None
+    else:
+        print("Please choose yes or no.")   
         
 def main():
     intro()

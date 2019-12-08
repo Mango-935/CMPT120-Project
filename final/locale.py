@@ -26,15 +26,14 @@ class Locale:
 
     def getItems(self):
         self.was_searched = True
-        return items
+        return self.items
 
     def removeItem(self, item):
         if (self.items is None):
             return None
         for i in (self.items):
-            y = self.items[i].getName()
-            if (item == y):
-                #x = self.items[i]
-                return self.items.pop(i)
-                #return x
+            if (item == i.getName()):
+                x = i
+                self.items.remove(i)
+                return x
 

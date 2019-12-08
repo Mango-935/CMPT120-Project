@@ -30,13 +30,13 @@ class Player:
     def getInventory(self):
         x = []
         for i in (self.inventory):
-            x.append(self.inventory[i].getName())
+            x.append(i.getName())
         return x
 
     def getSecret(self):
         return self.secret
 
-    def secret(self):
+    def setSecret(self):
         self.secret = True
 
     def goto(self, loc):
@@ -56,11 +56,10 @@ class Player:
 
     def use(self, item):
         for i in (self.inventory):
-            x = self.inventory[i].getName()
-            if (x == item):
-                self.inventory[self.inventory.index(item)].useItem()
-                if (self.inventory[self.inventory.index(item)].getNumUses() == 0):
-                    drop(self.inventory[i])
+            if (i.getName() == item):
+                i.useItem()
+                if (i.getNumUses() == 0):
+                    self.drop(i)
                 return True
         print("I'm sorry, That item was already used or doesn't exist.")
         return False

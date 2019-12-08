@@ -57,19 +57,19 @@ def init_game_data(player):
                 "The boat docked in the window of a school classroom. Yup.",
                 player + ", You walk out into a dark room. A light flickers to life as the air become very hard to breathe."]
     # Descriptions of each location given to the user.
-    Light = Item("Light", "It glows a faint red light. Still too dark to see anything better.", -1, True)
-    Medkit = Item("Medkit", "You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
-    BugSpray = Item("BugSpray", "You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
-    Axe = Item("Axe", "Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
+    Light = Item("light", "It glows a faint red light. Still too dark to see anything better.", -1, True)
+    Medkit = Item("medkit", "You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
+    BugSpray = Item("bugspray", "You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
+    Axe = Item("axe", "Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
     # Items in game
     Mall = Locale("Mall", b4CurLoc[0], curLoc[0], [Medkit])
     Trench = Locale("Trench", b4CurLoc[1], curLoc[1], [BugSpray])
-    Balloon = Locale("Balloon", b4CurLoc[2], curLoc[2], None)
-    Stadium = Locale("Stadium", b4CurLoc[3], curLoc[3], None)
+    Balloon = Locale("Balloon", b4CurLoc[2], curLoc[2], [])
+    Stadium = Locale("Stadium", b4CurLoc[3], curLoc[3], [])
     Helipad = Locale("Helipad", b4CurLoc[4], curLoc[4], [Light, Axe])
     Boat = Locale("Boat", b4CurLoc[5], curLoc[5], [BugSpray])
-    School = Locale("School", b4CurLoc[6], curLoc[6], None)
-    Darkroom = Locale("Dark Room", b4CurLoc[7], curLoc[7], None)
+    School = Locale("School", b4CurLoc[6], curLoc[6], [])
+    Darkroom = Locale("Dark Room", b4CurLoc[7], curLoc[7], [])
     # All locations
     curLocList = [Mall, Trench, Balloon, Stadium, Helipad, Boat, School, Darkroom]
     x = Player(player, curLocList[0])
@@ -102,7 +102,7 @@ def get_input(i):
         action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
                        "Head Toward Stands\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n")
         if (action != "inspect crowd" and action != "view field" and
-                action != "head towards stands" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+                action != "head toward stands" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
@@ -191,19 +191,21 @@ def update(game_data, action, i):
               "desk. It reads 'Python Programming: An Introduction"
               " to Computer \nScience'. You wonder if these made "
               "up kids could make a game like Zork.")
+    elif(action == "enter next class"):
+        return -1
     elif(action == "pull green light"):
         return(1)  # Bad Ending
     elif(action == "inspect container"):
         print("It looks exactly like the container the green light"
               " is stored in. A small light rod could be placed"
               " inside.")
-        if (me.getInventory().count("Light") > 0):
+        if (me.getInventory().count("light") > 0):
             print("\n'Add Red Light' has been added to commands!")
-    elif(action == "add red light" and me.use("Light") is True):
+    elif(action == "add red light" and me.use("light") is True):
         print("You placed the rod you stole from the helicopter "
               "pad into the container. It fits perfectly.\n'Pull "
               "Red Light' has been added to commands!")
-        me.secret()
+        me.setSecret()
     elif(action == "pull red light" and me.getSecret() is True):
         return(1)  # Bad Ending
     elif(action == "pull both lights" and me.getSecret() is True):
@@ -213,17 +215,17 @@ def update(game_data, action, i):
     elif (action == "search"):
         x = me.getCurLoc().getItems()
         for i in (x):
-            print(x[i])
+            print(i.getName())
     elif (action == "take"):
-        x = input("Is there an item you wish to pick up?")
+        x = input("Is there an item you wish to pick up? ").lower()
         me.take(x)
     elif (action == "use"):
-        x = input("What item would you like to use?")
+        x = input("What item would you like to use? ").lower()
         me.use(x)
     elif (action == "inventory"):
         x = me.getInventory()
         for i in (x):
-            print(x[i])
+            print(i)
     elif (action == "points"):
         print("Score: ", me.getScore())
     elif (action == "map"):

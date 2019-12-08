@@ -16,7 +16,6 @@ def intro():
     # Gives user title and background info
 
 
-
 def customization():
     player = input("You have to think hard, but eventually you remember your "
                    "own name(If you did not remember your name, life would be"
@@ -48,19 +47,32 @@ def init_game_data(player):
               "You find yourself in a pitch black room. There is a "
               "single green light and an empty container in the center, "
               "dangling \nfrom the ceiling."]  # DarkRoom
-    b4CurLoc = ["You are inside an abandoned mall. You stand up and rub your eyes a little after your nap.",
-                player + ", you walk out the back door and are greeted by an old trench, 60 feet deep.",
-                "You are walking for a while, and then the world around you distorts. You magically appear in a balloon.",
-                player + ", the balloon crashed into a baseball stadium. Not sure why, but continuity demands it.",
-                "You head out of the stands, and once again, you seamlessly appear on a helipad.",
-                player + ", you fall about 6 ft into the hatch, onto a boat. You know, adding locations after the first four has seriously changed this story.",
+    b4CurLoc = ["You are inside an abandoned mall. You stand up and rub your "
+                "eyes a little after your nap.",
+                player + ", you walk out the back door and are greeted by an "
+                "old trench, 60 feet deep.",
+                "You are walking for a while, and then the world around you "
+                "distorts. You magically appear in a balloon.",
+                player + ", the balloon crashed into a baseball stadium. Not "
+                "sure why, but continuity demands it.",
+                "You head out of the stands, and once again, you seamlessly "
+                "appear on a helipad.",
+                player + ", you fall about 6 ft into the hatch, onto a boat. "
+                "You know, adding locations after the first four has seriously"
+                " changed this story.",
                 "The boat docked in the window of a school classroom. Yup.",
-                player + ", You walk out into a dark room. A light flickers to life as the air become very hard to breathe."]
+                player + ", You walk out into a dark room. A light flickers "
+                "to life as the air become very hard to breathe."]
     # Descriptions of each location given to the user.
-    Light = Item("light", "It glows a faint red light. Still too dark to see anything better.", -1, True)
-    Medkit = Item("medkit", "You start to feel a little better, not good enough to recover from what you've seen today.", 1, False)
-    BugSpray = Item("bugspray", "You spray a can of bug spray around you. You watch a millions of gnats drop to your feet, and there appears to be more", 6, False)
-    Axe = Item("axe", "Contrary to what you thought this was, you smell different now. For better or worse.", 2, False)
+    Light = Item("light", "It glows a faint red light. Still too dark "
+                 "to see anything better.", -1, True)
+    Medkit = Item("medkit", "You start to feel a little better, not good "
+                  "enough to recover from what you've seen today.", 1, False)
+    BugSpray = Item("bugspray", "You spray a can of bug spray around you. You "
+                    "watch a millions of gnats drop to your feet, and there "
+                    "appears to be more", 6, False)
+    Axe = Item("axe", "Contrary to what you thought this was, you smell "
+               "different now. For better or worse.", 2, False)
     # Items in game
     Mall = Locale("Mall", b4CurLoc[0], curLoc[0], [Medkit])
     Trench = Locale("Trench", b4CurLoc[1], curLoc[1], [BugSpray])
@@ -71,7 +83,8 @@ def init_game_data(player):
     School = Locale("School", b4CurLoc[6], curLoc[6], [])
     Darkroom = Locale("Dark Room", b4CurLoc[7], curLoc[7], [])
     # All locations
-    curLocList = [Mall, Trench, Balloon, Stadium, Helipad, Boat, School, Darkroom]
+    curLocList = [Mall, Trench, Balloon, Stadium, Helipad, Boat, School,
+                  Darkroom]
     x = Player(player, curLocList[0])
     print(x.getCurLoc().getDescription())
     time = 24
@@ -81,55 +94,79 @@ def init_game_data(player):
 def get_input(i):
     if (i == 0):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Walls\nMove South\nTurn "
-                       "on Lights\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
+                       "on Lights\nLook\nSearch\nTake\nUse\nInventory\n"
+                       "Points\nMap\nQuit\n\n").lower()
         if (action != "inspect walls" and action != "move south" and
-                action != "turn on lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+                action != "turn on lights" and action != "look" and
+                action != "search" and action != "take" and action != "use"
+                and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 1):  # Gives valid commands
         action = input("\nPossible actions:\nFollow the Trench\nLook Over\n"
-                       "Look\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
+                       "Look\nSearch\nTake\nUse\nInventory\nPoints\n"
+                       "Map\nQuit\n\n").lower()
         if (action != "follow the trench" and action != "look over" and
-                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
+                action != "look" and action != "search" and action != "take"
+                and action != "use" and action != "inventory" and
+                action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 2):  # Gives valid commands
-        action = input("\nPossible actions:\nJump\nWatch\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\n"
+        action = input("\nPossible actions:\nJump\nWatch\nLook\nSearch\n"
+                       "Take\nUse\nInventory\nPoints\nMap\n"
                        "Quit\n\n").lower()
-        if (action != "jump" and action != "watch" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+        if (action != "jump" and action != "watch" and action != "look" and
+            action != "search" and action != "take" and action != "use" and
+            action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 3):  # Gives valid commands
         action = input("\nPossible actions:\nInspect Crowd\nView Field\n"
-                       "Head Toward Stands\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n")
+                       "Head Toward Stands\nLook\nSearch\nTake\nUse\n"
+                       "Inventory\nPoints\nMap\nQuit\n\n")
         if (action != "inspect crowd" and action != "view field" and
-                action != "head toward stands" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+                action != "head toward stands" and action != "look" and
+                action != "search" and action != "take" and action != "use"
+                and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 4):  # Gives valid commands
         action = input("\nPossible actions:\nLeave Through Hatch"
-                       "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
-        if (action != "leave through hatch" and
-                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
+                       "\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap"
+                       "\nQuit\n\n").lower()
+        if (action != "leave through hatch" and action != "look" and
+            action != "search" and action != "take" and action != "use" and
+            action != "inventory" and action != "points" and action != "map"
+                and action != "quit"):
             action = None
     elif (i == 5):  # Gives valid commands
-        action = input("\nPossible actions:\nGaze out\nHead inside\nLook\nSearch\nTake\nUse\nInventory\nPoints\n"
+        action = input("\nPossible actions:\nGaze out\nHead inside\nLook\n"
+                       "Search\nTake\nUse\nInventory\nPoints\n"
                        "Map\nQuit\n\n")
         if (action != "gaze out" and action != "head inside" and
-                action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and action != "map" and action != "quit"):
+                action != "look" and action != "search" and action != "take"
+                and action != "use" and action != "inventory" and
+                action != "points" and action != "map" and action != "quit"):
             action = None
     elif (i == 6):  # Gives valid commands
         action = input("\nPossible actions:\nTake Bag\nView Books\nEnter Next"
-                       " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
+                       " Class\nLook\nSearch\nTake\nUse\nInventory\nPoints"
+                       "\nMap\nQuit\n\n").lower()
         if (action != "take bag" and action != "view books" and
-                action != "enter next class" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+                action != "enter next class" and action != "look" and
+                action != "search" and action != "take" and action != "use"
+                and action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     elif (i == 7):  # Gives valid commands
         action = input("\nPossible actions:\nPull Green Light\nInspect "
-                       "Container\nLook\nSearch\nTake\nUse\nInventory\nPoints\nMap\nQuit\n\n").lower()
+                       "Container\nLook\nSearch\nTake\nUse\nInventory\n"
+                       "Points\nMap\nQuit\n\n").lower()
         if (action != "pull green light" and action != "inspect container" and
                 action != "add red light" and action != "pull red light" and
-                action != "pull both lights" and action != "look" and action != "search" and action != "take" and action != "use" and action != "inventory" and action != "points" and
+                action != "pull both lights" and action != "look" and
+                action != "search" and action != "take" and action != "use" and
+                action != "inventory" and action != "points" and
                 action != "map" and action != "quit"):
             action = None
     return action
@@ -282,16 +319,16 @@ def outro(cont):
     print("Game designed and programmed by Jeremy Gargana & Chris Danyluk.\n"
           "All rights belong to thus and you now owe us $20 for pirating our "
           "life's work :)")  # Credits
-    
     replay = input("Would you like to play again?: ").lower()
-        
+
     if replay == "yes":
         main()
     elif replay == "no":
         return None
     else:
-        print("Please choose yes or no.")   
-        
+        print("Please choose yes or no.")
+
+
 def main():
     intro()
     player = customization()

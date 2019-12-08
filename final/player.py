@@ -50,7 +50,8 @@ class Player:
             if (x is not None):
                 self.inventory.append(x)
             else:
-                print("I'm sorry, That item was already taken or doesn't exist.")
+                print("I'm sorry, That item was already " +
+                      "taken or doesn't exist.")
         else:
             print("I'm sorry, I don't understand.")
 

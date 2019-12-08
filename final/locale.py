@@ -36,4 +36,3 @@ class Locale:
                 x = i
                 self.items.remove(i)
                 return x
-
